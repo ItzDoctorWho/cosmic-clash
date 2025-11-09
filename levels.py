@@ -1,20 +1,3 @@
-# Level definitions for Cosmic Clash
-
-# Structure:
-# LEVELS = {
-#     level_number: {
-#         "waves": [
-#             # Wave definition:
-#             {"type": "enemy_type_id", "count": num_enemies, "spawn_delay": ms, "pattern": "spawn_pattern_id"},
-#             # ... more waves
-#         ],
-#         "enemy_count_for_boss": total_enemies_before_boss,
-#         "boss_type": "boss_id"
-#     },
-# }
-
-# Enemy Types: basic, zigzag, shooter (add more later: e.g., fast, tank, homing_shooter)
-# Spawn Patterns: top_random, top_sides, top_center_spread, left_entry_sweep, right_entry_sweep (add more later)
 
 LEVELS = {
     1: {
@@ -43,7 +26,7 @@ LEVELS = {
             {"type": "basic", "count": 10, "spawn_delay": 500, "pattern": "top_center_spread"},
         ],
         "enemy_count_for_boss": 20,
-        "boss_type": "level1_boss" # Reuse boss for now
+        "boss_type": "level1_boss"
     },
     4: {
         "waves": [
@@ -52,7 +35,7 @@ LEVELS = {
             {"type": "shooter", "count": 5, "spawn_delay": 1200, "pattern": "top_random"},
         ],
         "enemy_count_for_boss": 21,
-        "boss_type": "level2_boss" # Reuse boss
+        "boss_type": "level2_boss" 
     },
     5: {
         "waves": [
@@ -61,9 +44,9 @@ LEVELS = {
             {"type": "basic", "count": 10, "spawn_delay": 400, "pattern": "top_center_spread"},
         ],
         "enemy_count_for_boss": 26,
-        "boss_type": "level3_boss" # Introduce new boss type
+        "boss_type": "level3_boss" 
     },
-    # Placeholder definitions for levels 6-10 - Needs more variety
+
     6: {
         "waves": [
             {"type": "basic", "count": 15, "spawn_delay": 500, "pattern": "top_random"},
@@ -98,7 +81,7 @@ LEVELS = {
         "enemy_count_for_boss": 35,
         "boss_type": "level5_boss"
     },
-   10: { # Final level - mix of enemies, tough boss
+   10: { 
         "waves": [
             {"type": "basic", "count": 10, "spawn_delay": 500, "pattern": "top_center_spread"},
             {"type": "zigzag", "count": 10, "spawn_delay": 500, "pattern": "top_sides"},

@@ -1,5 +1,3 @@
-# Cosmic Clash - Main Game File
-
 import pygame
 import sys
 import random
@@ -637,24 +635,30 @@ class Game:
         self.game_state = "GAME_OVER"
         # Stop background music
         pygame.mixer.music.stop()
-        self.screen.fill(BLACK)
-        self.draw_text("GAME OVER", 48, WHITE, WIDTH / 2, HEIGHT / 4)
-        self.draw_text(f"Final Score: {self.score}", 22, WHITE, WIDTH / 2, HEIGHT / 2)
-        self.draw_text("Press any key to play again (ESC to Quit)", 22, WHITE, WIDTH / 2, HEIGHT * 3 / 4)
-        pygame.display.flip()
-        self.wait_for_key_or_quit()
-
-    def wait_for_key_or_quit(self):
-        # This loop now primarily handles waiting in start/game over screens
-        # Key handling for these states is done in self.events()
+        
         waiting = True
         while waiting and self.running:
-            self.clock.tick(FPS / 2)
-            # Process events to check for key presses or quit
-            self.events()
-            # If playing is set to False by event handler, exit wait loop
-            if not self.playing:
-                 waiting = False
+            self.clock.tick(FPS)
+            
+            # Draw the game over screen
+            self.screen.fill(BLACK)
+            self.draw_text("GAME OVER", 48, WHITE, WIDTH / 2, HEIGHT / 4)
+            self.draw_text(f"Final Score: {self.score}", 22, WHITE, WIDTH / 2, HEIGHT / 2)
+            self.draw_text("Press any key to play again (ESC to Quit)", 22, WHITE, WIDTH / 2, HEIGHT * 3 / 4)
+            pygame.display.flip()
+            
+            # Handle events
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.running = False
+                    waiting = False
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_ESCAPE:
+                        self.running = False
+                        waiting = False
+                    else:
+                        waiting = False
+                        self.playing = False
 
     def draw_text(self, text, size, color, x, y):
         font = pygame.font.Font(self.font_name, size)
